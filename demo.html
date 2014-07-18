@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>NeuralNet Demo</title>
+		<meta name="viewport" content="width=device-width">
+	</head>
+	<body>
+		<div>
+			Random network:
+			<div id="randomNetwork"></div>
+			Mutated 4%:
+			<div id="mutatedNetwork"></div>
+		</div>
+		<script src="NeuralNet.js"></script>
+		<script>
+			var neuralNet = new NeuralNet();
+			document.getElementById("randomNetwork").appendChild(document.createTextNode(JSON.stringify(neuralNet.network)));
+			document.getElementById("mutatedNetwork").appendChild(document.createTextNode(JSON.stringify(neuralNet.mutateNetwork(0.04, neuralNet.network))));
+		</script>
+	</body>
+</html>
