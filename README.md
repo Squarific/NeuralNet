@@ -11,7 +11,7 @@ How to use
 The NeuralNet constructor accepts two objects, the first being a settings object the second an array that represents a network.
 The following methods can be used:
 
-    neuralNet.mutateNetwork(mutationRate, network);
+    neuralNet.mutateNetwork(settings, network);
 
 If no mutationRate or network is provided it will use the network of the object the method was called on and the mutationRate in neuralNet.settings.mutationRate.
 
@@ -27,14 +27,15 @@ Settings
 ========
 
 The settings object defaults to:
-    
-{
-	layers: 2, //Used for generating
-	nodesPerLayer: 20, //Used for generating
-    inputNodes: 2,
-    outputNodes: 2
-	mutationRate: 0.04 //Used for mutation
-}
+
+    {
+        hiddenLayers: 2,            // The amount of hidden layers the network should have
+        nodesPerLayer: 20,          // The amount of nodes for each hidden layer
+        inputNodes: 2,              // The amount of input nodes the network will have
+        outputNodes: 2              // The amount of output nodes
+        mutationRate: 0.04          // The weights and bias will on average change this much
+                                    // weight += (Math.random() * 2 - 1) * mutationRate
+    }
 
 Network
 =======
