@@ -6,22 +6,35 @@ This javascript module is made for applications that want to use neural network 
 How to use
 ==========
 
-    var neuralNet = new NeuralNet(); //This creates a random network
+    var neuralNet = new NeuralNet([settings, network]); //This creates a random network
     
-The NeuralNet constructor accepts two objects, the first being a settings object the second an array that represents a network.
-The following methods can be used:
+The NeuralNet constructor accepts two objects, the first being a settings object the second an array that represents a network. If no network object is given it will default to a random network.
 
-    neuralNet.mutateNetwork(settings, network);
+Methods
+=======
 
-If no mutationRate or network is provided it will use the network of the object the method was called on and the mutationRate in neuralNet.settings.mutationRate.
+    neuralNet.mutateNetwork([settings, network]);
 
-    neuralNet.randomNetwork(hiddenLayers, nodePerLayer, inputNodes, outputNodes);
-    
-Function will return a random network. This function also defaults to the settings object.
+Mutates the network by applying the following formula to all weights and biasses in the network:  `weight += (Math.random() * 2 - 1) * mutationRate`
 
-    neuralNet.runNetwork(inputNodes, network);
+If a settings and network object is passed it will use that instead of the neuralNet the function is called on.
+
+
+
+    neuralNet.randomNetwork([hiddenLayers, nodePerLayer, inputNodes, outputNodes]);
+
+This function returns a random network with the given settings, if not provided uses the ones of the network it was called on.
+
+
+
+    neuralNet.runNetwork(inputNodes[, network]);
     
 This function will return the calculated outputNodes, defaults to using the network of the neuralNet object it was called on.
+
+Example output: [0.1948, 0.3849]
+
+The outputNode values will always be in the range [0, 1] as the activation function is `1 / (1 + Math.exp(-sum))`
+
 
 Settings
 ========
